@@ -43,8 +43,8 @@ export default function ExpenseList() {
                     {datas.map((data) =>(
                         <tr key={data.id} className="hover:bg-gray-50 transition duration-150 ease-in-out" > 
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> {data.name} </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {data.price} </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-semibold "> {data.price} </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {new Date(data.date).toLocaleDateString()} </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-semibold "> {data.price} € </td>
                         
                         </tr>
                     ) )}
