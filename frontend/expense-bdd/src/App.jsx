@@ -6,13 +6,14 @@ import './App.css'
 import { useState,useEffect } from 'react'
 import ExpenseList from './components/ExpenseList'
 import NewExpenseForm from './components/NewExpenseForm'
-import { getExpenses } from './services/expenseApi'
+import { getExpenses,deleteExpense  } from './services/expenseApi'
 
 function App() {
   
   // pour faire switch ajout depense
    const [depenseEdit,setDepenseEdit] = useState(false);
    const [datas,setDatas] = useState([]);
+  //  la premiere fois au chargement de la page 
     useEffect(() => {
            // creer une fonction asynchone car useAffect ne peut pas etre asynchrone
            const fetchData = async() =>{
@@ -30,6 +31,11 @@ function App() {
           setDatas((prev) => [...prev, newExpense]);
       };
 
+      // Pour suppriemr une depnse à l'affichage mais aps dans la  bdd  
+      const handleDeleteExpense = (id) =>{
+        setDatas((prev) => prev.filter((expense)=> expense.id !== id ));
+      }
+
   return (
     <div className='max-w-2xl mx-auto p-4 md:p-8 min-h-screen '>
        <h1 className='text-3xl font-extrabold text-center text-gray-800 mb-8'> Expense - Gestionnaire de depense </h1>
@@ -40,7 +46,7 @@ function App() {
         <NewExpenseForm setDepenseEdit={setDepenseEdit}  onAddExpense={handleAddExpense} />
       )}
       
-      <ExpenseList datas={datas} setDatas={setDatas} />
+      <ExpenseList datas={datas}  onDeleteExpense = {handleDeleteExpense} />
    
     </div>
   )

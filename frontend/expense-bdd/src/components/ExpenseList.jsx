@@ -1,10 +1,21 @@
 import  { useState,useEffect } from 'react'
+import { deleteExpense } from '../services/expenseApi'
 // import { getExpenses } from '../services/expenseApi'
 
 
 
-export default function ExpenseList({datas,setDatas}) {
-    
+export default function ExpenseList({datas,onDeleteExpense}) {
+    // fonction pour supprimer dans la bdd la depense
+    const handleDelete = async(id) =>{
+        try {
+            await deleteExpense(id);
+            onDeleteExpense(id)
+        } catch (error) {
+            console.error("Erreur de  suppression");
+            
+        }
+    }
+
   return (
     <>
         <div className="shadow-lg rounded-xl overflow-hidden bg-white mt-8">
@@ -31,7 +42,7 @@ export default function ExpenseList({datas,setDatas}) {
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> {data.name} </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {new Date(data.date).toLocaleDateString()} </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-semibold "> {data.price} € </td>
-                            <td><button className=" mt-3 px-6 py-3 text-lg font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-500  ">Supprimer</button></td>
+                            <td><button onClick={()=>handleDelete(data.id)} className=" mt-3 px-6 py-3 text-lg font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-500  ">Supprimer</button></td>
                             
                         
                         </tr>
