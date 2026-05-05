@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createExpense } from '../services/expenseApi';
 
-export default function NewExpenseForm({setDepenseEdit}) {
+export default function NewExpenseForm({setDepenseEdit, onAddExpense }) {
   const [name,setName] = useState("");
   const [price, setPrice] = useState("");
   const [date,setDate] = useState("");
@@ -34,6 +34,7 @@ export default function NewExpenseForm({setDepenseEdit}) {
         date 
       }
       const datasExpense =  await createExpense(newData)
+      onAddExpense(datasExpense);
       setName("");
       setPrice("");
       setDate("");

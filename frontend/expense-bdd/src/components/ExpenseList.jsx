@@ -1,23 +1,9 @@
 import  { useState,useEffect } from 'react'
-import { getExpenses } from '../services/expenseApi'
+// import { getExpenses } from '../services/expenseApi'
 
 
 
-export default function ExpenseList() {
-    // useState => pour les données dynamique 
-    const [datas,setDatas] = useState([]);
-    // affiche au chargement de la page  
-    useEffect(() => {
-        // creer une fonction asynchone car useAffect ne peut pas etre asynchrone
-        const fetchData = async() =>{
-            // recupere les donnée de getExpenses
-            const data = await getExpenses()
-            // met a jours les données 
-            setDatas(data)
-        }
-        // appelle de la fonction 
-        fetchData();
-    }, []);
+export default function ExpenseList({datas,setDatas}) {
     
   return (
     <>
@@ -45,6 +31,8 @@ export default function ExpenseList() {
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> {data.name} </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {new Date(data.date).toLocaleDateString()} </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-semibold "> {data.price} € </td>
+                            <td><button className=" mt-3 px-6 py-3 text-lg font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-500  ">Supprimer</button></td>
+                            
                         
                         </tr>
                     ) )}
