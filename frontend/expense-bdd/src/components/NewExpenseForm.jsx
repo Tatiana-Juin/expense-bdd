@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createExpense } from '../services/expenseApi';
 
-export default function NewExpenseForm() {
+export default function NewExpenseForm({setDepenseEdit}) {
   const [name,setName] = useState("");
   const [price, setPrice] = useState("");
   const [date,setDate] = useState("");
@@ -78,7 +78,7 @@ export default function NewExpenseForm() {
 
                   <button type="submit"  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out" >Ajouter depense</button>
 
-                  <button type="button" onClick={()=>{ setName("");setDate(""),setPrice("");setErrorMessage("")}} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Annuler</button>
+                  <button type="button" onClick={()=>{ setName("");setDate(""),setPrice("");setErrorMessage("");setDepenseEdit(false)}} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Annuler</button>
               </div>
                {errorMessage && (
                     <div className="mt-4 bg-red-50 border border-red-100 text-red-500 px-4 py-2 rounded-xl text-center font-medium text-sm">
