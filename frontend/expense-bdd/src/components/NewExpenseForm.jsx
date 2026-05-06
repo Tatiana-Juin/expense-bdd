@@ -7,12 +7,27 @@ export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEd
   const [date,setDate] = useState("");
   // pour les erreur 
   const [errorMessage,setErrorMessage] = useState("");
-   // pour préremplir le formulaire 
+// Remplace ton ancienne fonction par celle-ci
+const formatDateForInput = (dateValue) => {
+  if (!dateValue) return "";
+  
+  const d = new Date(dateValue);
+  
+  if (isNaN(d.getTime())) return "";
+
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+  // pour préremplir le formulaire 
    useEffect(() => {
     if (expenseToEdit) {
       setName(expenseToEdit.name);
       setPrice(expenseToEdit.price);
-      setDate(expenseToEdit.date?.slice(0,10));
+      setDate(formatDateForInput(expenseToEdit.date));
+      // setDate(expenseToEdit.date)
     }else{
        setName("");
       setPrice("");
@@ -112,7 +127,7 @@ export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEd
                       {expenseToEdit ? "Modifier" : "Ajouter une depense"}
                   </button>
 
-                  <button type="submit" onClick={()=>{ setName("");setDate(""),setPrice("");setErrorMessage("");setExpenseToEdit(null);setDepenseEdit(false)}} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Annuler</button>
+                  <button type="button" onClick={()=>{ setName("");setDate(""),setPrice("");setErrorMessage("");setExpenseToEdit(null);setDepenseEdit(false)}} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Annuler</button>
               </div>
                {errorMessage && (
                     <div className="mt-4 bg-red-50 border border-red-100 text-red-500 px-4 py-2 rounded-xl text-center font-medium text-sm">

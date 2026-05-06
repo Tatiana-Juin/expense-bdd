@@ -41,7 +41,11 @@ export default function ExpenseList({datas,onDeleteExpense,onEditExpense,setDepe
                         <tr key={data.id} className="border-b hover:bg-gray-50 transition" > 
                             <td className="p-4 font-medium text-gray-800"> {data.name} </td>
                             
-                            <td className="p-4 text-gray-500"> {new Date(data.date).toLocaleDateString()} </td>
+                            <td className="p-4 text-gray-500">
+                            {/* {new Date(data.date).toLocaleDateString("fr-FR")} */}
+                            {new Date(data.date).toLocaleDateString("fr-FR")}
+                            </td>
+
                             <td className="p-4 text-right font-semibold text-gray-800 "> {data.price} € </td>
                             {/* ajout ou modification */}
                             <td><button onClick={() => {onEditExpense(data);setDepenseEdit(true);}} className=" px-3 py-1 bg-orange-500 text-white rounded-lg hover:bg-orange-600  ">Modifier</button></td>
