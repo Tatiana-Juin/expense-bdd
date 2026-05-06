@@ -40,6 +40,15 @@ function App() {
         setDatas((prev) => prev.filter((expense)=> expense.id !== id ));
       }
 
+      // Pour la modification 
+      const handleUpdateExpense = (updatedExpense) => {
+      setDatas((prev) =>
+          prev.map((item) =>
+            item.id === updatedExpense.id ? updatedExpense : item
+        )
+      );
+    };
+
   return (
     <div className='max-w-2xl mx-auto p-4 md:p-8 min-h-screen '>
        <h1 className='text-3xl font-extrabold text-center text-gray-800 mb-8'> Expense - Gestionnaire de depense </h1>
@@ -48,7 +57,7 @@ function App() {
       </div>
       {depenseEdit &&(
         <NewExpenseForm setDepenseEdit={setDepenseEdit}  onAddExpense={handleAddExpense} expenseToEdit={expenseToEdit}
-        setExpenseToEdit={setExpenseToEdit} />
+        setExpenseToEdit={setExpenseToEdit}  onUpdateExpense={handleUpdateExpense} />
       )}
       
       <ExpenseList datas={datas}  onDeleteExpense = {handleDeleteExpense} onEditExpense={setExpenseToEdit} setDepenseEdit={setDepenseEdit} />

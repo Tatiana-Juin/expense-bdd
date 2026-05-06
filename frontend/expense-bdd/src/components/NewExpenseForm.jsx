@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { createExpense,updateExpense  } from '../services/expenseApi';
 
-export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEdit,setExpenseToEdit }) {
+export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEdit,setExpenseToEdit,onUpdateExpense }) {
   const [name,setName] = useState("");
   const [price, setPrice] = useState("");
   const [date,setDate] = useState("");
@@ -44,7 +44,11 @@ export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEd
 
       // mode modification
       if(expenseToEdit){
-         await updateExpense(expenseToEdit.id, data);
+        await updateExpense(expenseToEdit.id, data);
+        onUpdateExpense({
+          id: expenseToEdit.id,
+          ...data
+        });
         setExpenseToEdit(null);
         setDepenseEdit(false);
         setName("");
