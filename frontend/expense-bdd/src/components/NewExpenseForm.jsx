@@ -13,6 +13,10 @@ export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEd
       setName(expenseToEdit.name);
       setPrice(expenseToEdit.price);
       setDate(expenseToEdit.date?.slice(0,10));
+    }else{
+       setName("");
+      setPrice("");
+      setDate("");
     }
   }, [expenseToEdit]);
   // fonction pour l'ajout 
@@ -108,7 +112,7 @@ export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEd
                       {expenseToEdit ? "Modifier" : "Ajouter une depense"}
                   </button>
 
-                  <button type="submit" onClick={()=>{ setName("");setDate(""),setPrice("");setErrorMessage("");setDepenseEdit(false)}} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Annuler</button>
+                  <button type="submit" onClick={()=>{ setName("");setDate(""),setPrice("");setErrorMessage("");setExpenseToEdit(null);setDepenseEdit(false)}} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Annuler</button>
               </div>
                {errorMessage && (
                     <div className="mt-4 bg-red-50 border border-red-100 text-red-500 px-4 py-2 rounded-xl text-center font-medium text-sm">
