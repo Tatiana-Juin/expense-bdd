@@ -17,6 +17,19 @@ export const createExpense = async (data) => {
 
   return await res.json();
 };
+
+export const updateExpense = async (id, data) => {
+  const res = await fetch(`${API_URL_DEV}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  return await res.json();
+};
+
 // Pour supprimer une depense
 export const deleteExpense = async (id) => {
   const res = await fetch(`${API_URL_DEV}/${id}`, {

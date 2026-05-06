@@ -13,6 +13,10 @@ function App() {
   // pour faire switch ajout depense
    const [depenseEdit,setDepenseEdit] = useState(false);
    const [datas,setDatas] = useState([]);
+
+  //  Pour la modification 
+  const [expenseToEdit,setExpenseToEdit] = useState(null);
+ 
   //  la premiere fois au chargement de la page 
     useEffect(() => {
            // creer une fonction asynchone car useAffect ne peut pas etre asynchrone
@@ -43,10 +47,11 @@ function App() {
           <button className="px-6 py-3 text-lg font-medium text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-green-300" onClick={()=>setDepenseEdit(true)}>Nouvelle depense</button>
       </div>
       {depenseEdit &&(
-        <NewExpenseForm setDepenseEdit={setDepenseEdit}  onAddExpense={handleAddExpense} />
+        <NewExpenseForm setDepenseEdit={setDepenseEdit}  onAddExpense={handleAddExpense} expenseToEdit={expenseToEdit}
+        setExpenseToEdit={setExpenseToEdit} />
       )}
       
-      <ExpenseList datas={datas}  onDeleteExpense = {handleDeleteExpense} />
+      <ExpenseList datas={datas}  onDeleteExpense = {handleDeleteExpense} onEditExpense={setExpenseToEdit} setDepenseEdit={setDepenseEdit} />
    
     </div>
   )
