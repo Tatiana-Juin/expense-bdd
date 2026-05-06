@@ -61,6 +61,23 @@ module.exports.deleteExpense = async(id) =>{
     }
 }
 
+module.exports.updateExpense = async(id,expenseData) =>{
+    try {
+        const {name,price,date} = expenseData;
+        const [result] = await db.query("UPDATE expenses SET name_expense = ?, price_expense = ?, date_expense = ? WHERE id_expense = ? ",[name,price,date,id])
+        // pour verifier s'il a une modification 
+         if(result.affectedRows ===0){
+            return false;
+        }
+        return true;
+
+    } catch (error) {
+        console.error("Une erreur est survenue lors de la modification");
+        throw error;
+        
+    }
+}
+
 module.exports.getTotal = async()=>{
     try {
         const [row] = await db.query("SELECT SUM(price_expense) AS total FROM expenses")

@@ -51,6 +51,40 @@ exports.deleteExpense = async(req,res) =>{
     }
     
 }
+// Pour la modification 
+exports.updateExpense = async (req, res) => {
+  try {
+    const { name, price, date } = req.body;
+    const id = req.params.id;
+
+    const priceNumber = Number(price);
+
+    if (!name || name.trim() === "" || priceNumber <= 0 || isNaN(priceNumber) ||!date) {
+      return res.status(400).json({message: "Tous les champs sont obligatoires et le montant doit être supérieur à 0"});
+    }
+
+    const updateData = {
+      name,
+      price: priceNumber,
+      date
+    };
+
+    const isUpdated = await expenseService.updateExpense(id, updateData);
+
+    if (!isUpdated) {
+      return res.status(404).json({message: "Dépense non trouvée"});
+    }
+
+    
+    return res.status(200).json({message: "Dépense modifiée"});
+
+  } catch (error) {
+    console.error("Erreur updateExpense :", error.message);
+    return res.status(500).json({
+      message: "Erreur lors de la modification"
+    });
+  }
+};
 
 exports.getTotal = async(req,res)=>{
    

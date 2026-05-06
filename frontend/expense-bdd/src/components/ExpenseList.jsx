@@ -1,10 +1,8 @@
 import  { useState,useEffect } from 'react'
 import { deleteExpense } from '../services/expenseApi'
-// import { getExpenses } from '../services/expenseApi'
-
-
 
 export default function ExpenseList({datas,onDeleteExpense}) {
+    
     // fonction pour supprimer dans la bdd la depense
     const handleDelete = async(id) =>{
         try {
@@ -44,7 +42,6 @@ export default function ExpenseList({datas,onDeleteExpense}) {
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-semibold "> {data.price} € </td>
                             <td><button onClick={()=>handleDelete(data.id)} className=" mt-3 px-6 py-3 text-lg font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-500  ">Supprimer</button></td>
                             
-                        
                         </tr>
                     ) )}
 
