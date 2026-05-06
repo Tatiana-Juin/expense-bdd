@@ -16,32 +16,37 @@ export default function ExpenseList({datas,onDeleteExpense,onEditExpense,setDepe
 
   return (
     <>
-        <div className="shadow-lg rounded-xl overflow-hidden bg-white mt-8">
-            <table className="min-w-full divide-y divide-gray-200">
+        <div className="bg-white shadow-xl rounded-2xl overflow-hidden">
+            <table className="w-full">
 
-                <thead className="bg-gray-50">
+                <thead className="g-gray-100 text-gray-600 text-sm uppercase">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="p-4 text-left">
                         Nom de la dépense
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="p-4 text-left">
                             Date
                         </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="p-4 text-left">
                         Montant (€)
                         </th>
+                        <th className="p-4 text-center">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     {datas.map((data) =>(
-                        <tr key={data.id} className="hover:bg-gray-50 transition duration-150 ease-in-out" > 
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> {data.name} </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {new Date(data.date).toLocaleDateString()} </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right font-semibold "> {data.price} € </td>
-                            <td><button onClick={() => {onEditExpense(data);setDepenseEdit(true);}} className=" mt-3 px-6 py-3 text-lg font-medium text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-500  ">Modifier</button></td>
-                            <td><button onClick={()=>handleDelete(data.id)} className=" mt-3 px-6 py-3 text-lg font-medium text-white bg-red-500 rounded-lg shadow-md hover:bg-red-500  ">Supprimer</button></td>
+
+                        <tr key={data.id} className="border-b hover:bg-gray-50 transition" > 
+                            <td className="p-4 font-medium text-gray-800"> {data.name} </td>
+                            
+                            <td className="p-4 text-gray-500"> {new Date(data.date).toLocaleDateString()} </td>
+                            <td className="p-4 text-right font-semibold text-gray-800 "> {data.price} € </td>
+                            {/* ajout ou modification */}
+                            <td><button onClick={() => {onEditExpense(data);setDepenseEdit(true);}} className=" px-3 py-1 bg-orange-500 text-white rounded-lg hover:bg-orange-600  ">Modifier</button></td>
+
+                            <td><button onClick={()=>handleDelete(data.id)} className=" px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600  ">Supprimer</button></td>
                             
                         </tr>
                     ) )}

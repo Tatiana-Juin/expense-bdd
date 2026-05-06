@@ -7,7 +7,7 @@ export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEd
   const [date,setDate] = useState("");
   // pour les erreur 
   const [errorMessage,setErrorMessage] = useState("");
-   // pour le formulaire prérempli 
+   // pour préremplir le formulaire 
    useEffect(() => {
     if (expenseToEdit) {
       setName(expenseToEdit.name);
@@ -74,8 +74,8 @@ export default function NewExpenseForm({setDepenseEdit, onAddExpense,expenseToEd
     
   }
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Ajouter une dépense</h2>
+    <div className="bg-white shadow-xl rounded-2xl p-6 mb-10">
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">Ajouter une dépense</h2>
         
           <form  className="space-y-4" onSubmit={handleSubmit}>
 

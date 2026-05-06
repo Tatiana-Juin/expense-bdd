@@ -10,11 +10,11 @@ import { getExpenses,deleteExpense  } from './services/expenseApi'
 
 function App() {
   
-  // pour faire switch ajout depense
+  // pour faire switch formulaire ouvert et fermer
    const [depenseEdit,setDepenseEdit] = useState(false);
    const [datas,setDatas] = useState([]);
 
-  //  Pour la modification 
+  //  Pour la modificatioon - editer la modification 
   const [expenseToEdit,setExpenseToEdit] = useState(null);
  
   //  la premiere fois au chargement de la page 
@@ -40,7 +40,7 @@ function App() {
         setDatas((prev) => prev.filter((expense)=> expense.id !== id ));
       }
 
-      // Pour la modification 
+      // Pour la afficher le rendu a chaque modification d emaniere prope 
       const handleUpdateExpense = (updatedExpense) => {
       setDatas((prev) =>
           prev.map((item) =>
@@ -50,17 +50,22 @@ function App() {
     };
 
   return (
-    <div className='max-w-2xl mx-auto p-4 md:p-8 min-h-screen '>
-       <h1 className='text-3xl font-extrabold text-center text-gray-800 mb-8'> Expense - Gestionnaire de depense </h1>
+    <div className='min-h-screen bg-gray-100 py-10 '>
+      <div className="max-w-5xl mx-auto px-4">
+        <h1 className='text-4xl font-extrabold text-center text-gray-800 mb-10'> Expense - Gestionnaire de depense </h1>
         <div className='flex justify-center mb-10'>
-          <button className="px-6 py-3 text-lg font-medium text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-green-300" onClick={()=>setDepenseEdit(true)}>Nouvelle depense</button>
-      </div>
+          
+          <button className="px-6 py-3 bg-green-500 text-white font-semibold rounded-xl shadow hover:bg-green-600 transition" onClick={()=>setDepenseEdit(true)}>Nouvelle depense</button>
+        </div>
+      {/* ouvertire du formulaire */}
       {depenseEdit &&(
         <NewExpenseForm setDepenseEdit={setDepenseEdit}  onAddExpense={handleAddExpense} expenseToEdit={expenseToEdit}
         setExpenseToEdit={setExpenseToEdit}  onUpdateExpense={handleUpdateExpense} />
       )}
       
       <ExpenseList datas={datas}  onDeleteExpense = {handleDeleteExpense} onEditExpense={setExpenseToEdit} setDepenseEdit={setDepenseEdit} />
+      </div>
+    
    
     </div>
   )
