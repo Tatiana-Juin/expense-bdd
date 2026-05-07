@@ -96,27 +96,27 @@ function App() {
       </div>
 
         {/* À placer juste après <ExpenseList /> dans App.jsx */}
-<div className="sticky bottom-4 mt-6">
-  <div className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-2xl rounded-2xl p-4 flex justify-between items-center max-w-4xl mx-auto">
-    <div className="flex items-center space-x-3">
-      <div className="bg-blue-600 p-2 rounded-lg shadow-inner">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-        </svg>
+      <div className="sticky bottom-4 mt-6">
+        <div className="bg-white/80 backdrop-blur-md border border-gray-200 shadow-2xl rounded-2xl p-4 flex justify-between items-center max-w-4xl mx-auto">
+          <div className="flex items-center space-x-3">
+            <div className="bg-blue-600 p-2 rounded-lg shadow-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Total</p>
+              <p className="text-sm text-gray-500">{datas.length} dépenses enregistrées</p>
+            </div>
+          </div>
+          
+          <div className="text-right">
+            <span className="text-3xl font-black text-gray-900 leading-none">
+              {total.toFixed(2)} €
+            </span>
+          </div>
+        </div>
       </div>
-      <div>
-        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Total</p>
-        <p className="text-sm text-gray-500">{datas.length} dépenses enregistrées</p>
-      </div>
-    </div>
-    
-    <div className="text-right">
-      <span className="text-3xl font-black text-gray-900 leading-none">
-        {total.toFixed(2)} €
-      </span>
-    </div>
-  </div>
-</div>
     
    
     </div>
