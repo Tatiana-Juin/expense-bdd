@@ -82,9 +82,17 @@ function App() {
       <div className="max-w-5xl mx-auto px-4">
 
         <h1 className='text-4xl font-extrabold text-center text-gray-800 mb-10'> Expense - Gestionnaire de depense </h1>
-        <div className='flex justify-center mb-10'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8'>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              <p className="text-gray-400 text-sm font-bold uppercase">Total dépenses</p>
+              <p className="text-4xl font-black text-red-500">{total.toFixed(2)} €</p>
+          </div>
+          <div className="flex items-center justify-center">
+             <button className="px-6 py-3 bg-green-500 text-white font-semibold rounded-xl shadow hover:bg-green-600 transition" onClick={()=>setDepenseEdit(true)}>Nouvelle depense</button>
+          </div>
           
-          <button className="px-6 py-3 bg-green-500 text-white font-semibold rounded-xl shadow hover:bg-green-600 transition" onClick={()=>setDepenseEdit(true)}>Nouvelle depense</button>
+          
         </div>
       {/* ouvertire du formulaire */}
       {depenseEdit &&(
@@ -95,11 +103,6 @@ function App() {
         <ExpenseList datas={datas}  onDeleteExpense = {handleDeleteExpense} onEditExpense={setExpenseToEdit} setDepenseEdit={setDepenseEdit} />
       </div>
 
-        <div className="bg-white shadow-md rounded-xl p-4 mb-6 text-center">
-          <h2 className="text-xl font-semibold text-gray-700"> Total des dépenses </h2>
-
-          <p className="text-3xl font-bold text-green-600 mt-2">{total.toFixed(2)} €</p>
-        </div>
     
    
     </div>
